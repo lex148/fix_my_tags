@@ -33,8 +33,14 @@ describe 'MusicFinder' do
       end
 
       it 'list should contain "some random - mock file"' do
-        puts subject.new.list.methods.sort
-        subject.new(MOCK_MUSIC).list.must_include "some random - mock file.mp3"
+        music = "some random - mock file.mp3"
+        subject.new(MOCK_MUSIC).list.map{|x| x.name }.must_include music
+      end
+
+      it 'list should contain FixMyTags::Music objects' do
+        subject.new(MOCK_MUSIC).list.each do |music|
+          music.must_be_kind_of FixMyTags::Music
+        end
       end
 
     end
