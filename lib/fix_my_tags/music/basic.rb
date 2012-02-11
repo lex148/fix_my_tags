@@ -9,6 +9,10 @@ module FixMyTags::Music
       @name = @fullpath.match(/[^\/]*$/).to_s
     end
 
+    def self.match? file
+      !!(file.match /^[^-]+ - [^-]+\.[^-]+$/)
+    end
+
     def artist
       (@name.match /^[^-]*/ || "").to_s.strip 
     end

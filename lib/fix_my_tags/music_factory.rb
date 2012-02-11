@@ -2,11 +2,12 @@ require "fix_my_tags/music/basic"
 
 module FixMyTags::MusicFactory
 
-  def self.build file
-    FixMyTags::Music::Basic.new file
-  end
+  @Klasses = [FixMyTags::Music::Basic]
 
-  def registor
+  def self.build file
+    @Klasses.each do |klass|
+      return klass.new file if klass.match? file 
+    end
   end
 
 end
