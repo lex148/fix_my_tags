@@ -15,6 +15,11 @@ describe 'MusicFinder' do
       music.must_be_instance_of FixMyTags::Music::Underscore
     end
 
+    it 'should build track_number_middle' do
+      music = subject.build './random/folder/artist_d - 354 - title_anem .ext'
+      music.must_be_instance_of FixMyTags::Music::TrackNumberMiddle
+    end
+
   end
 
 end
