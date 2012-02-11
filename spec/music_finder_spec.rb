@@ -37,11 +37,6 @@ describe 'MusicFinder' do
         subject.new(MOCK_MUSIC).list.map{|x| x.name }.must_include music
       end
 
-      it 'list should contain FixMyTags::Music objects' do
-        subject.new(MOCK_MUSIC).list.each do |music|
-          music.must_be_kind_of FixMyTags::Music
-        end
-      end
 
     end
 
