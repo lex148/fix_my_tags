@@ -5,7 +5,8 @@ module FixMyTags::Music
     attr_reader :name
 
     def initialize file
-      @name = @fullpath = file
+      @fullpath = file
+      @name = @fullpath.match(/[^\/]*$/).to_s
     end
 
     def artist
