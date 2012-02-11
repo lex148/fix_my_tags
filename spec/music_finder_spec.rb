@@ -37,7 +37,6 @@ describe 'MusicFinder' do
         subject.new(MOCK_MUSIC).list.map{|x| x.name }.must_include music
       end
 
-
     end
 
 end
