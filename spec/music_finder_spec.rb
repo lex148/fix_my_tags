@@ -1,6 +1,6 @@
 require 'helper'
 
-MOCK_MUSIC = './spec/mock_music'
+MOCK_MUSIC = './spec/mock_music/*'
 
 describe 'MusicFinder' do
   

@@ -7,7 +7,8 @@ class FixMyTags::MusicFinder
   end
 
   def list
-    `ls #{@path}`.force_encoding('UTF-8').to_s.split(/\n/).map{|x| FixMyTags::MusicFactory.build x }
+    files = `find #{@path} -type f`.force_encoding('UTF-8').split(/\n/)
+    files.map{ |file| FixMyTags::MusicFactory.build file }
   end
 
 end

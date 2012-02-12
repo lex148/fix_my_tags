@@ -2,28 +2,19 @@ module FixMyTags::Music
 
   class TrackNumberMiddle
 
-    attr_reader :name
+    attr_reader :name, :artist, :title, :filetype
 
     def initialize file
-      @fullpath = file
-      @name = @fullpath.match(/[^\/]*$/).to_s
-      @clean = @name.gsub("_"," ")
+      @name     = file.match(/[^\/]*$/).to_s
+      clean    = @name.gsub("_"," ")
+      @artist   = (clean.match /^[^-]*/ || "").to_s.strip
+      @title    = (clean.match( /[0-9]+\W*-([^\.^-]*)/)[1] ).to_s.strip
+      @filetype = (clean.match( /[\.]([^\.]*)/)[1] ).to_s.strip
     end
 
     def self.match? file
-      !!(file.match /^[^-]+ -\W*[0-9]+\W*- [^-]+\.[^-]+$/)
-    end
-
-    def artist
-      (@clean.match /^[^-]*/ || "").to_s.strip 
-    end
-
-    def title
-      (@clean.match( /[0-9]+\W*-([^\.^-]*)/)[1] ).to_s.strip 
-    end
-
-    def filetype
-      (@clean.match( /[\.]([^\.]*)/)[1] ).to_s.strip 
+      name = file.match(/[^\/]*$/).to_s
+      !!(name.match /^[^-]+ -\W*[0-9]+\W*- [^-]+\.[^-]+$/)
     end
 
   end
