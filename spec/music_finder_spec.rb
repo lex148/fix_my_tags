@@ -1,6 +1,6 @@
 require 'helper'
 
-MOCK_MUSIC = './spec/mock_music/*'
+MOCK_MUSIC = './spec/mock_music'
 
 describe 'MusicFinder' do
   
@@ -35,6 +35,12 @@ describe 'MusicFinder' do
       it 'list should contain "some random - mock file"' do
         music = "some random - mock file.mp3"
         subject.new(MOCK_MUSIC).list.map{|x| x.name }.must_include music
+      end
+
+      it 'list should not find dot files"' do
+        music = "I Am A - bad file.mp3"
+        subject.new(MOCK_MUSIC).list.map{|x| x.name }.wont_include music
+        puts subject.new(MOCK_MUSIC).list.map{|x| x.name }
       end
 
     end
