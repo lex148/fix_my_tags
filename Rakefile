@@ -11,6 +11,12 @@ task :test do
   exec_test
 end
 
+task :find do
+  require 'fix_my_tags'
+  found = FixMyTags::MusicFinder.new.list.select{|x| x.class == String }
+  puts found
+end
+
 namespace :test do
 
   %w( progress outline dotted cue ).each do |format|

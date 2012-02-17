@@ -20,6 +20,16 @@ describe 'MusicFinder' do
       music.must_be_instance_of FixMyTags::Music::TrackNumberMiddle
     end
 
+    it 'should build artist_album_track_title' do
+      music = subject.build '/home/lex/Music/Sting/Fields Of Gold_ The Best Of Sting 1984-1994/03 Fields Of Gold.mp3'
+      music.must_be_instance_of FixMyTags::Music::ArtistAlbumTrackTitle
+    end
+
+    it 'should not build artist_album_track_title' do
+      music = subject.build '/home/lex/Music/classical/08 Adagio ma non tanto.m4a'
+      music.wont_be_instance_of FixMyTags::Music::ArtistAlbumTrackTitle
+    end
+
   end
 
 end
